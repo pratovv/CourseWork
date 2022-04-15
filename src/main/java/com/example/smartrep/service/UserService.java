@@ -1,6 +1,5 @@
 package com.example.smartrep.service;
 import com.example.smartrep.dto.CreateUserDto;
-import com.example.smartrep.dto.UpdateUserDto;
 import com.example.smartrep.entity.UserEntity;
 import com.example.smartrep.enums.Status;
 import com.example.smartrep.repository.UserRepository;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -38,10 +36,14 @@ public class UserService {
         user.setUserRole(userDto.getUserRole());
         return repo.save(user);
     }
-    public UserEntity updateUserById(Integer id, UpdateUserDto updateUserDto) throws Exception {
-        UserEntity user = repo.findById(id).orElseThrow(
-                ()-> new Exception("нет здания с таким id = ")
-        );
-        return user;
+        public UserEntity updateUser(Integer id, UserEntity user) throws Exception {
+        return repo.findById(id)
+                .map(updateProduct-> {
+                    updateProduct.setName(user.getName());
+                    updateProduct.setSurname(user.getSurname());
+                    updateProduct.setPassword(user.getPassword());
+                    updateProduct.setSalary(user.getSalary());
+                    return repo.save(updateProduct);
+                }).orElseThrow( Exception::new);
     }
 }
