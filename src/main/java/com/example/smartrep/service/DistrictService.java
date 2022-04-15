@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class DistrictService {
     @Autowired
-     private DistrictRepository repo;
+    private DistrictRepository repo;
 }

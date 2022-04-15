@@ -17,12 +17,16 @@ public class DistrictEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private short id;
+
     @Column(name = "perv")
     private long perv;
+
     @Column(name = "oktyab")
     private long oktyab;
+
     @Column(name = "lenin")
     private long lenin;
+
     @Column(name = "sverd")
     private long sverd;
 }
