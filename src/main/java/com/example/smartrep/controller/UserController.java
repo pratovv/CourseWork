@@ -1,6 +1,7 @@
 package com.example.smartrep.controller;
 
 import com.example.smartrep.dto.CreateUserDto;
+import com.example.smartrep.dto.UpdateUserDto;
 import com.example.smartrep.entity.UserEntity;
 import com.example.smartrep.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,14 @@ public class UserController {
     public UserEntity getProduct(@PathVariable("id") Integer id) throws Exception{
         return service.findById(id);
     }
-
     @PostMapping("/create")
     public ResponseEntity<UserEntity> createVacancy(@RequestBody CreateUserDto userDto)
     {
         return new ResponseEntity<>(service.createUser(userDto), HttpStatus.OK);
+    }
+    @PutMapping("/image/{id}")
+    public UserEntity updateUser(@PathVariable Integer id, UpdateUserDto updateUserDto) throws Exception {
+        return service.updateUserById(id,updateUserDto);
     }
 
 }
