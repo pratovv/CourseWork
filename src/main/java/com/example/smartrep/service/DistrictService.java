@@ -14,4 +14,14 @@ public class DistrictService {
     public List<DistrictEntity> getAllDistrict() {
         return repo.findAll();
     }
+    public DistrictEntity updateDistrict(Short id,DistrictEntity dist) throws Exception {
+        return repo.findById(id)
+                .map(updateProduct-> {
+                    updateProduct.setLenin(dist.getLenin());
+                    updateProduct.setOktyab(dist.getOktyab());
+                    updateProduct.setPerv(dist.getPerv());
+                    updateProduct.setSverd(dist.getSverd());
+                    return repo.save(updateProduct);
+                }).orElseThrow( Exception::new);
+    }
 }

@@ -16,17 +16,17 @@ import javax.persistence.*;
 public class DistrictEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private short id;
+    private Short id;
 
     @Column(name = "perv")
-    private long perv;
+    private Long perv;
 
     @Column(name = "oktyab")
-    private long oktyab;
+    private Long oktyab;
 
     @Column(name = "lenin")
-    private long lenin;
+    private Long lenin;
 
     @Column(name = "sverd")
-    private long sverd;
+    private Long sverd;
 }
