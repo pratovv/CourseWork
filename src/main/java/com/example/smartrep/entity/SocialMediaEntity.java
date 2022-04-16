@@ -12,14 +12,14 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "districts")
-public class DistrictEntity {
+@Table(name = "socialmedia")
+public class SocialMediaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "district")
-    private String district;
+    @Column(name = "social")
+    private String social;
 
     @Column(name = "image")
     private String image;
@@ -27,7 +27,7 @@ public class DistrictEntity {
     @Column(name = "people")
     private Long people;
 
-    @Column(name = "contribution")
-    private Long contribution;
+    @Column(name = "money")
+    private Long money;
 
 }

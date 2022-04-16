@@ -18,12 +18,15 @@ public class UserService {
     }
 
     public Optional<UserEntity> findById(Long id) throws Exception {
-        Optional<UserEntity> user = repo.findById(id);
-        return user;
+        try {
+            Optional<UserEntity> user = repo.findById(id);
+            return user;
+        }catch (Exception e){
+            return null;
+        }
     }
     public UserEntity createUser(CreateUserDto userDto){
         UserEntity user = new UserEntity();
-
         user.setLogin(userDto.getLogin());
         user.setPassword(userDto.getPassword());
         user.setName(userDto.getName());
@@ -33,17 +36,27 @@ public class UserService {
         return repo.save(user);
     }
         public UserEntity updateUser(Long id, UserEntity user) throws Exception {
-        return repo.findById(id)
-                .map(updateProduct-> {
-                    updateProduct.setName(user.getName());
-                    updateProduct.setSurname(user.getSurname());
-                    updateProduct.setPassword(user.getPassword());
-                    updateProduct.setSalary(user.getSalary());
-                    return repo.save(updateProduct);
-                }).orElseThrow( Exception::new);
+        try {
+            return repo.findById(id)
+                    .map(updateProduct-> {
+                        updateProduct.setName(user.getName());
+                        updateProduct.setSurname(user.getSurname());
+                        updateProduct.setPassword(user.getPassword());
+                        updateProduct.setSalary(user.getSalary());
+                        return repo.save(updateProduct);
+                    }).orElseThrow( Exception::new);
+        }catch (Exception e){
+            return null;
+        }
+
     }
 
     public void deleteById(Long id) {
-        repo.deleteById(id);
+
+        try {
+            repo.deleteById(id);
+        }catch (Exception e){
+            return ;
+        }
     }
 }
