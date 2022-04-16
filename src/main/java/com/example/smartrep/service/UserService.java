@@ -1,13 +1,13 @@
 package com.example.smartrep.service;
 import com.example.smartrep.dto.CreateUserDto;
 import com.example.smartrep.entity.UserEntity;
-import com.example.smartrep.enums.Status;
 import com.example.smartrep.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -17,12 +17,8 @@ public class UserService {
         return repo.findAll();
     }
 
-
-    public UserEntity findById(Integer id) throws Exception {
-        UserEntity user = repo.findByIdAndStatus(id, Status.ACTIVE);
-        if(user==null){
-            throw new Exception("user id is null");
-        }
+    public Optional<UserEntity> findById(Long id) throws Exception {
+        Optional<UserEntity> user = repo.findById(id);
         return user;
     }
     public UserEntity createUser(CreateUserDto userDto){
@@ -36,7 +32,7 @@ public class UserService {
         user.setUserRole(userDto.getUserRole());
         return repo.save(user);
     }
-        public UserEntity updateUser(Integer id, UserEntity user) throws Exception {
+        public UserEntity updateUser(Long id, UserEntity user) throws Exception {
         return repo.findById(id)
                 .map(updateProduct-> {
                     updateProduct.setName(user.getName());
@@ -45,5 +41,9 @@ public class UserService {
                     updateProduct.setSalary(user.getSalary());
                     return repo.save(updateProduct);
                 }).orElseThrow( Exception::new);
+    }
+
+    public void deleteById(Long id) {
+        repo.deleteById(id);
     }
 }
