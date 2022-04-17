@@ -19,6 +19,7 @@ import java.util.Optional;
 public class DistrictController {
     @Autowired
     private DistrictService service;
+
     @GetMapping("/all")
     public List<DistrictEntity> getAll(){return service.getAllDistrict();}
 

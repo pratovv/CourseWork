@@ -7,6 +7,7 @@ import com.example.smartrep.entity.DistrictEntity;
 import com.example.smartrep.entity.SocialMediaEntity;
 import com.example.smartrep.service.DistrictService;
 import com.example.smartrep.service.SocialMediaService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,8 @@ import java.util.Optional;
 public class SocialMediaController {
     @Autowired
     private SocialMediaService service;
+
+
     @GetMapping("/all")
     public List<SocialMediaEntity> getAll(){return service.getAll();}
 

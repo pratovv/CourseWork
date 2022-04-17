@@ -1,6 +1,8 @@
 package com.example.smartrep.service;
 import com.example.smartrep.dto.CreateUserDto;
+import com.example.smartrep.entity.SocialMediaEntity;
 import com.example.smartrep.entity.UserEntity;
+import com.example.smartrep.repository.SocialMediaRepository;
 import com.example.smartrep.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository repo;
+
+
+
     public List<UserEntity> getAllUser() {
         return repo.findAll();
     }

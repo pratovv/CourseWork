@@ -16,6 +16,7 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService service;
+
     @GetMapping("/all")
     public List<UserEntity> getAll(){return service.getAllUser();}
     @GetMapping("/{id}")

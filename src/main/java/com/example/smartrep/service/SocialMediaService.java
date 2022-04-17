@@ -1,11 +1,8 @@
 package com.example.smartrep.service;
 
 import com.example.smartrep.dto.CreateSocialMediaDto;
-import com.example.smartrep.dto.CreateUserDto;
 import com.example.smartrep.entity.SocialMediaEntity;
-import com.example.smartrep.entity.UserEntity;
 import com.example.smartrep.repository.SocialMediaRepository;
-import com.example.smartrep.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +13,8 @@ import java.util.Optional;
 public class SocialMediaService {
     @Autowired
     private SocialMediaRepository repo;
+
+
     public List<SocialMediaEntity> getAll() {
         return repo.findAll();
     }
