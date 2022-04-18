@@ -57,7 +57,7 @@ public class UserService {
       return socialMoney;
     };
 
-
+   
     public List <SocialMediaEntity> getAllSocial(){return socialRepo.findAll();}
 
     public List<UserEntity> getAllUser() {
