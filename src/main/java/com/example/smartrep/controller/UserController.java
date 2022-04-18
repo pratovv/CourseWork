@@ -1,6 +1,9 @@
 package com.example.smartrep.controller;
 
 import com.example.smartrep.dto.CreateUserDto;
+import com.example.smartrep.dto.SocialMoney;
+import com.example.smartrep.dto.UserLogin;
+import com.example.smartrep.entity.SocialMediaEntity;
 import com.example.smartrep.entity.UserEntity;
 import com.example.smartrep.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,18 @@ public class UserController {
     @Autowired
     private UserService service;
 
+    @PostMapping("/login")
+    public Optional<Object> authUser(@RequestBody UserLogin userLogin)throws Exception{
+        try{
+            return service.login(userLogin);
+        }catch (Exception e){
+            throw new Exception("Incorrect username and password", e);
+        }
+    }
+    @GetMapping("/get-social-money")
+    public SocialMoney getSocialMoney(){return service.getSocialMoney();}
+    @GetMapping("/allMedia")
+    public List<SocialMediaEntity> getAllMedia(){return service.getAllSocial();}
     @GetMapping("/all")
     public List<UserEntity> getAll(){return service.getAllUser();}
     @GetMapping("/{id}")
