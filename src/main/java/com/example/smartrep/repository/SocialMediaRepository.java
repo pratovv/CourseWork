@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface SocialMediaRepository extends JpaRepository<SocialMediaEntity, Long> {
-    @Query(value = "select money from socialmedia",nativeQuery = true)
-    List<Integer> findByEmailAddress();
+List<SocialMediaEntity> findAll();
 
 }
+
