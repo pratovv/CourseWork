@@ -37,6 +37,4 @@ public class SwaggerConfig  {
                 new Contact("Pratov Timur", "www.example.com", "timur.pratovv@gmail.com"),
                 "License of API", "API license URL", Collections.emptyList());
     }
-
-
 }

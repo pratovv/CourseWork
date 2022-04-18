@@ -1,8 +1,7 @@
 package com.example.smartrep.service;
 import com.example.smartrep.dto.CreateUserDto;
-import com.example.smartrep.entity.SocialMediaEntity;
+import com.example.smartrep.dto.UserLogin;
 import com.example.smartrep.entity.UserEntity;
-import com.example.smartrep.repository.SocialMediaRepository;
 import com.example.smartrep.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository repo;
-
-
 
     public List<UserEntity> getAllUser() {
         return repo.findAll();
@@ -53,15 +50,26 @@ public class UserService {
         }catch (Exception e){
             return null;
         }
-
     }
 
-    public void deleteById(Long id) {
-
-        try {
-            repo.deleteById(id);
+    public Optional<Object> login(UserLogin userLogin)throws Exception{
+        try{
+            Optional<UserEntity> theUser = repo.findByLogin(userLogin.getLogin());
+            Optional<Object> loggedInDto=theUser.map(logged->{
+                logged.setId(theUser.get().getId());
+                logged.setUserRole(theUser.get().getUserRole());
+                logged.setName(theUser.get().getName());
+                logged.setSalary(theUser.get().getSalary());
+               return logged;
+            });
+            //возвращает все данные пользователя,хоче чтобы возвращал LoggedinDto
+            return loggedInDto;
         }catch (Exception e){
-            return ;
+            throw new Exception("Логин неверный",e);
         }
+    };
+    public void deleteById(Long id) {
+            repo.deleteById(id);
     }
+
 }
