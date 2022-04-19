@@ -1,5 +1,6 @@
 package com.example.smartrep.entity;
 
+import com.example.smartrep.dto.MarketingDto;
 import com.example.smartrep.enums.Status;
 import com.example.smartrep.enums.UserRole;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,8 +39,5 @@ public class UserEntity {
 
     @Column(name = "role")
     private UserRole userRole;
-
-    @Enumerated(EnumType.STRING)
-    private Status status;
 
 }

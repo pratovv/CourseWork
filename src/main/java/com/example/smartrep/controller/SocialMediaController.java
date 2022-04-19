@@ -22,7 +22,6 @@ public class SocialMediaController {
     @Autowired
     private SocialMediaService service;
 
-
     @GetMapping("/all")
     public List<SocialMediaEntity> getAll(){return service.getAll();}
 

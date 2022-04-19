@@ -64,12 +64,12 @@ public class UserService {
         return repo.findAll();
     }
 
+
     public Optional<UserEntity> findById(Long id) throws Exception {
         try {
-            Optional<UserEntity> user = repo.findById(id);
-            return user;
+            return repo.findById(id);
         }catch (Exception e){
-            return null;
+            return Optional.empty();
         }
     }
     public UserEntity createUser(CreateUserDto userDto)throws Exception{
