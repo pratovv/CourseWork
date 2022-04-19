@@ -39,7 +39,7 @@ public class UserController {
         return service.findById(id);
     }
     @PostMapping("/create")
-    public ResponseEntity<UserEntity> createVacancy(@RequestBody CreateUserDto userDto)
+    public ResponseEntity<UserEntity> createVacancy(@RequestBody CreateUserDto userDto)throws Exception
     {
         return new ResponseEntity<>(service.createUser(userDto), HttpStatus.OK);
     }

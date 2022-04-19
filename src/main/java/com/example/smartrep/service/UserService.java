@@ -72,7 +72,11 @@ public class UserService {
             return null;
         }
     }
-    public UserEntity createUser(CreateUserDto userDto){
+    public UserEntity createUser(CreateUserDto userDto)throws Exception{
+        Optional<UserEntity> exist = repo.findByLogin(userDto.getLogin());
+        if(!exist.isEmpty()){
+            throw new Exception("Login is bisy");
+        }
         UserEntity user = new UserEntity();
         user.setLogin(userDto.getLogin());
         user.setPassword(userDto.getPassword());
@@ -100,15 +104,15 @@ public class UserService {
     public Optional<Object> login(UserLogin userLogin)throws Exception{
         try{
             Optional<UserEntity> theUser = repo.findByLogin(userLogin.getLogin());
-            Optional<Object> loggedInDto=theUser.map(logged->{
-                logged.setId(theUser.get().getId());
-                logged.setUserRole(theUser.get().getUserRole());
-                logged.setName(theUser.get().getName());
-                logged.setSalary(theUser.get().getSalary());
-               return logged;
-            });
-            //возвращает все данные пользователя,хоче чтобы возвращал LoggedinDto
-            return loggedInDto;
+            if(theUser.isEmpty()){
+                throw new Exception("Login is not correct");
+            }
+
+            if(!theUser.get().getPassword().equals(userLogin.getPassword())){
+                throw new Exception("Password is not correct");
+            }
+
+            return Optional.of(theUser);
         }catch (Exception e){
             throw new Exception("Логин неверный",e);
         }
