@@ -4,25 +4,25 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
-import java.util.Optional;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Getter
+@Setter
 @Entity
-@Table(name = "managertodo")
-public class ManagerTodoEntity {
+@Table(name = "todoemployee")
+public class TodoEmployeeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private UserEntity user;
+    private UserEntity manager;
+
+    @ManyToOne
+    private UserEntity employee;
 
     @Column(name = "title")
     private String title;
@@ -37,3 +37,5 @@ public class ManagerTodoEntity {
     private String date;
 
 }
+
+
